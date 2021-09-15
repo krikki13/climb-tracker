@@ -10,6 +10,8 @@ class UserSerializer(serializers.ModelSerializer):
     yearOfBirth = serializers.IntegerField(source='year_of_birth')
 
     def validate_gender(self, value):
+        if value == "None":
+            value = None
         if value is not None and value != 'M' and value != 'F':
             raise serializers.ValidationError('Invalid gender')
         return value
@@ -29,3 +31,6 @@ class UserSerializer(serializers.ModelSerializer):
                   'gender',
                   'password'
                   )
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
