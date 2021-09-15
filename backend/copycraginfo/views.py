@@ -24,7 +24,7 @@ def update_crags(request):
             existing_crag.last_updated = now
             existing_crag.save()
         else:
-            Crag.objects.create(name=name, last_updated=now, url=url)
+            Crag.objects.create(name=name, last_updated=now, url=url, id_country=3)
 
     return HttpResponse("Hello, world. " + "<br />".join([row[0] for row in crags]))
 

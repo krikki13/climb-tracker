@@ -28,6 +28,8 @@ def get_crag_routes(crag_url_suffix, abort_if_incomplete=True):
     sectors = []
 
     table = soup.find("table", {"class": "fmtTable expandable active striped"})
+    if table is None:
+        return None
     for tr in table.find_all("tr"):
         if len(tr.get_attribute_list('class')) == 2 and tr.get_attribute_list('class')[0] == 'sectorRow' and tr.get_attribute_list('class')[1] == 'expandable':
             sectors.append((tr.find('p').text, []))
@@ -82,7 +84,10 @@ def get_crags_and_their_routes():
 
     for crag in crags:
         print("Crag: " + crag[0])
-        crags_copy.append((crag[0], crag[1], get_crag_routes(crag[1], False)))
+        returned = get_crag_routes(crag[1], False)
+        if returned is None:
+            continue
+        crags_copy.append((crag[0], crag[1], returned))
 
     return crags_copy
 

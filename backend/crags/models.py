@@ -7,6 +7,7 @@ class Crag(models.Model):
     name = models.CharField(max_length=70)
     last_updated = models.DateTimeField(blank=True, null=True)
     url = models.CharField(max_length=200, blank=True, null=True)
+    id_country = models.IntegerField()
 
     def __str__(self):
         return self.name
