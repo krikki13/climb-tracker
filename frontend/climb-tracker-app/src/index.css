@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.header {
+  background-color: rgb(140, 203, 255);
+}
+.header-item-left {
+  float: left;
+}
+.header-item-right {
+  float: right;
+}
+.header-item-left, .header-item-right {
+  color:rgb(6, 20, 31);
+  padding: 10px;
+  text-decoration: none;
+}
+
+/* Disable text transform on buttons */
+.MuiButton-root {
+  text-transform: none !important;
+}
+
+/* Fix spacing around FormLabel */
+legend.MuiFormLabel-root{
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+/* Fix weirdly large spacing around radio buttons */
+.radio-group .MuiRadio-root{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+.radio-group .MuiFormControlLabel-label {
+  font-size: 14px;
+}
+
+.MuiButton-root.fit-content {
+  margin: auto;
+  width: fit-content;
+}
+
+.form-control {
+  width: 200px !important;
+  margin: 8px !important;
+}
+
+.form-control-radio {
+  margin-top: 24px !important;
+}
