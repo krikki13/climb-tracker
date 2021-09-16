@@ -8,12 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { checkPropTypes } from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: 200,
-    },
-  },
   buttonProgress: {
     color: '#c6cccb',
     position: 'absolute',
@@ -33,24 +27,6 @@ const passwordComplexityCheck = (password) => {
   }
   if(password.indexOf(" ") >= 0) {
     return "Password should not contain any spaces."
-  }
-  if(!/[A-Z]/.test(password)){
-    return "Password should contain at least one upper case letter."; 
-  }
-  if(!/[a-z]/.test(password)){
-    return "Password should contain at least one lower case letter.";
-  }
-  if(!/\d/.test(password)){
-    return "Password should contain at least one number.";
-  }
-  if(!/[!"#$%&/()='+*?,.-;_:<>]/.test(password)){
-    return "Password should contain a sign.";
-  }
-  if(/(.)\1{3,}/.test(password)){
-    return "Password should not contain too repetitive characters.";
-  }
-  if(!/^[A-Za-z0-9!"#$%&/()='+*?,.-;_:<>]*$/.test(password)){
-    return "Password contains characters that are not allowed.";
   }
   return "";
 }
@@ -105,7 +81,7 @@ function CreateAccountView(props){
     }
   
     setSending(true);
-    axios.post('http://127.0.0.1:8000/users/create', {
+    axios.post('users/create', {
       firstName: firstName.value, 
       lastName: lastName.value,
       email: email.value,
@@ -132,9 +108,9 @@ function CreateAccountView(props){
   };
 
   return(
-    <form style={{margin: "auto", width: "220px", marginBottom: "100px"}} className={classes.root} noValidate onSubmit={(event) => this.onSubmit(event)}>
+    <form className="form" noValidate onSubmit={(event) => this.onSubmit(event)}>
       
-      <h2 style={{marginBottom: "9px"}}>Create account</h2>
+      <h2 style={{marginBottom: "16px"}}>Create account</h2>
       <MyTextField
           label="First Name"
           state={firstName}
@@ -180,7 +156,7 @@ function CreateAccountView(props){
           </RadioGroup>
           {gender.error ? <FormHelperText>{gender.error}</FormHelperText> : <React.Fragment />}
         </FormControl>
-        <Button className="fit-content" style={{marginTop: "15px"}} size="small" variant="contained" color="primary" 
+        <Button className="fit-content" style={{marginTop: "17px"}} size="small" variant="contained" color="primary" 
           onClick={event => onSubmit(event)}>
             Create{sending ? <CircularProgress size={24} className={classes.buttonProgress} /> : "" }</Button>
       

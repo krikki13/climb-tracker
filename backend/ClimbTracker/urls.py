@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from users import views
+
 urlpatterns = [
     #path('copy-info/', include('copycraginfo.urls')),
     path('api/', include('crags.urls')),
     path('users/', include('users.urls')),
+    path('login', views.login_user),
     path('admin/', admin.site.urls),
 ]

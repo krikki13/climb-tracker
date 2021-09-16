@@ -1,5 +1,7 @@
+import re
 from datetime import datetime
 
+from django.contrib.auth.password_validation import CommonPasswordValidator
 from rest_framework import serializers
 from users.models import User
 
@@ -20,6 +22,25 @@ class UserSerializer(serializers.ModelSerializer):
         now = datetime.now()
         if value > now.year or value < now.year - 100:
             raise serializers.ValidationError('Invalid year of birth')
+        return value
+
+    def validate_password(self, value):
+        if len(value) < 8:
+            raise serializers.ValidationError('Password should be 8 characters long')
+        if not re.search("[a-z]", value) or not re.search("[A-Z]", value):
+            raise serializers.ValidationError('Password should contain both upper and lower case letters')
+        if not re.search("\d", value):
+            raise serializers.ValidationError('Password should contain at least one digit')
+        if not re.search("[!#$%&/()=?*'+,\\-;:_<>]", value):
+            raise serializers.ValidationError('Password should contain at least one character')
+        if re.search("\s", value):
+            raise serializers.ValidationError('Password should not contain any spaces')
+
+        CommonPasswordValidator().validate(value)
+
+        res = re.findall("([^a-zA-Z0-9!#$%&/()=?*'+,\\-;:_<>])", value)
+        if res is not None:
+            raise serializers.ValidationError('Password should not contain: ' + "".join(res))
         return value
 
     class Meta:

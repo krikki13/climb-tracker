@@ -8,8 +8,17 @@ import HomeView from './Components/HomeView';
 import LoginView from './Components/LoginView';
 import CreateAccountView from './Components/CreateAccountView';
 import AccountCreated from './Components/AccountCreated';
+import axios from 'axios';
 
 function App() {
+  axios.defaults.baseURL = "http://127.0.0.1:8000/"
+  axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+  axios.defaults.xsrfCookieName = "csrftoken";
+  axios.defaults.withCredentials = true;
+  axios.defaults.headers = {
+    'Content-Type': 'application/json;charset=utf-8',
+  }
+
   return (
     <BrowserRouter>
       <Switch>

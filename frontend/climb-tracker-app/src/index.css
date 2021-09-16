@@ -53,8 +53,18 @@ legend.MuiFormLabel-root{
   width: fit-content;
 }
 
+.form {
+  margin: auto;
+  width: 250px !important;
+  margin-bottom: 100px;
+}
+
+.form .MuiTextField-root {
+  width: 250px !important;
+}
+
 .form-control {
-  width: 200px !important;
+  width: 250px !important;
   margin: 8px !important;
 }
 
