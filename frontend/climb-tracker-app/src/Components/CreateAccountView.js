@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import MyTextField from "./common/MyTextField.js";
 import '../index.css';
+import { emailPattern } from '../Constants.js';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { checkPropTypes } from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   buttonProgress: {
@@ -17,9 +17,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: -12,
   }
 }));
-
-// email regex by RFC 5322 Official Standard
-const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const passwordComplexityCheck = (password) => {
   if(password.length < 8) {
@@ -108,7 +105,7 @@ function CreateAccountView(props){
   };
 
   return(
-    <form className="form" noValidate onSubmit={(event) => this.onSubmit(event)}>
+    <form className="form" noValidate onSubmit={onSubmit}>
       
       <h2 style={{marginBottom: "16px"}}>Create account</h2>
       <MyTextField
@@ -157,7 +154,7 @@ function CreateAccountView(props){
           {gender.error ? <FormHelperText>{gender.error}</FormHelperText> : <React.Fragment />}
         </FormControl>
         <Button className="fit-content" style={{marginTop: "17px"}} size="small" variant="contained" color="primary" 
-          onClick={event => onSubmit(event)}>
+          type="submit">
             Create{sending ? <CircularProgress size={24} className={classes.buttonProgress} /> : "" }</Button>
       
       
