@@ -1,5 +1,6 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import parsers
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -34,6 +35,13 @@ def login_user(request):
 
     # TODO problem: AssertionError: The `request` argument must be an instance of `django.http.HttpRequest`, not `rest_framework.request.Request`.
     # when request is passed to login
+
+
+@api_view(['POST'])
+@csrf_exempt
+def logout_user(request):
+    logout(request)
+    return Response("Done", status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])

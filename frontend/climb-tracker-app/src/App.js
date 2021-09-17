@@ -27,19 +27,24 @@ function App() {
     'Content-Type': 'application/json;charset=utf-8',
   }
 
-  useEffect(() => {
+  const getLoggedInUser = () => {
     axios.get("users/whoami")
-    .then(response => {
-      document.title = appName;
+    .then(response => {  
       if(typeof response.data === 'object' && response.data.email) {
         setUser(response.data);
       }
-    })
+    });
+  };
+
+  useEffect(() => {
+    document.title = appName;
+
+    getLoggedInUser();
   }, []);
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header user={user} onLogout={getLoggedInUser} />
       <div style={{paddingTop: "95px"}}>
       <Switch>
         <Route exact path='/login' render={props => <LoginView {...props} user={user} />} />

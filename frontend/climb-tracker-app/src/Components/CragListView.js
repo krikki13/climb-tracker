@@ -28,7 +28,7 @@ function CragListView(props) {
         }
       });
     } 
-  }, [params]);
+  }, [params['c']]);
 
   
   
