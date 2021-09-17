@@ -12,8 +12,18 @@ code {
     monospace;
 }
 
+.app-name {
+  margin: 0;
+  padding-left: 10px;
+}
+
 .header {
+  position: fixed;
+  left: 0;
+  right: 0;
   background-color: rgb(140, 203, 255);
+  padding-top: 15px;
+  padding-left: 10px;
 }
 .header-item-left {
   float: left;
@@ -25,6 +35,10 @@ code {
   color:rgb(6, 20, 31);
   padding: 10px;
   text-decoration: none;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 /* Disable text transform on buttons */

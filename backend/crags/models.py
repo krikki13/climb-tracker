@@ -8,6 +8,7 @@ class Crag(models.Model):
     last_updated = models.DateTimeField(blank=True, null=True)
     url = models.CharField(max_length=200, blank=True, null=True)
     id_country = models.IntegerField()
+    num_of_routes = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -44,3 +45,17 @@ class Route(models.Model):
     class Meta:
         managed = False
         db_table = 'Route'
+
+
+class Country(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=100)
+    slovenian_name = models.CharField(max_length=100)
+    code = models.CharField(unique=True, max_length=2)
+
+    def __str__(self):
+        return str(self.name)
+
+    class Meta:
+        managed = False
+        db_table = 'Country'

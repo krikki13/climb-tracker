@@ -9,7 +9,7 @@ export default function MyTextField(props) {
         label={props.label + (props.required ? "*" : "")}
         type={props.type}
         value={props.state.value}
-        error={errorMessage != ""}
+        error={errorMessage !== ""}
         helperText={errorMessage}
         onChange={(event) => {
             props.setValue({value: event.target.value.trim(), error: props.setError(event.target.value.trim())})}} />);
