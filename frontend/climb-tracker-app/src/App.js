@@ -7,7 +7,7 @@ import Switch from 'react-router-dom/es/Switch';
 import HomeView from './Components/HomeView';
 import LoginView from './Components/LoginView';
 import CreateAccountView from './Components/CreateAccountView';
-import AccountCreated from './Components/AccountCreated';
+import AccountCreated from './Components/AccountCreatedView';
 import axios from 'axios';
 
 function App() {
