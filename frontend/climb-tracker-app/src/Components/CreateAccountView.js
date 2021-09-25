@@ -1,22 +1,10 @@
-import { Grid, FormControl, FormHelperText, FormLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem, Button, Tooltip, Input, CircularProgress } from '@material-ui/core';
+import { Grid, FormControl, FormHelperText, FormLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem, Button, Tooltip, Input, CircularProgress } from '@mui/material';
 import React, { useState } from 'react';
 import axios from 'axios';
 import MyTextField from "./common/MyTextField.js";
 import '../index.css';
 import { emailPattern } from '../Constants.js';
 
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  buttonProgress: {
-    color: '#c6cccb',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginTop: -12,
-    marginLeft: -12,
-  }
-}));
 
 const passwordComplexityCheck = (password) => {
   if(password.length < 8) {
@@ -54,8 +42,6 @@ function CreateAccountView(props){
   for(var i=new Date().getFullYear(); i>1910; i--){
     yearList.push(i);
   }
-
-  const classes = useStyles();
 
   /**
    * Submit form data to backend.
@@ -139,7 +125,8 @@ function CreateAccountView(props){
 
         <FormControl className="form-control" error={!!year.error}>
           <FormLabel component="legend">Year of birth*</FormLabel>
-          <Select value={year != undefined ? year.value : ""} onChange={(event) => setYear({value: event.target.value, error: ""})}>
+          <Select value={year != undefined ? year.value : ""} size="small"
+            onChange={(event) => setYear({value: event.target.value, error: ""})}>
             {yearList.map(year => <MenuItem value={year}>{year}</MenuItem>)}
           </Select>
           {year.error ? <FormHelperText>{year.error}</FormHelperText> : <React.Fragment />}
@@ -155,7 +142,7 @@ function CreateAccountView(props){
         </FormControl>
         <Button className="fit-content" style={{marginTop: "17px"}} size="small" variant="contained" color="primary" 
           type="submit">
-            Create{sending ? <CircularProgress size={24} className={classes.buttonProgress} /> : "" }</Button>
+            Create{sending ? <CircularProgress size={24} className="button-progress" /> : "" }</Button>
       
       
     </form>

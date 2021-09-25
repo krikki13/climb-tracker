@@ -1,4 +1,4 @@
-import { Button, FormControl, FormHelperText, Grid, Input, InputLabel, TextField } from '@material-ui/core';
+import { Button, FormControl, FormHelperText, Grid, Input, InputLabel, TextField } from '@mui/material';
 import Link from 'react-router-dom/es/Link';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { emailPattern } from '../Constants.js';
 import '../index.css';
 import { useState } from 'react';
 
-function LoginView(){
+function LoginView(props){
   const history = useHistory();
   const [email, setEmail] = useState({value: "", error: ""});
   const [password, setPassword] = useState({value: "", error: ""});
@@ -33,8 +33,14 @@ function LoginView(){
       email: email.value,
       password: password.value
     }).then(response => {
-      history.push("/");
-    }).catch(response => setWasIncorrect(true));
+      if(response.data && response.data.csrftoken) {
+        props.onLogin(response.data.csrftoken);
+        history.push("");
+      }
+    }).catch(response => {
+      var cva=2;
+      setWasIncorrect(true);
+    });
   }
 
   return(
@@ -46,6 +52,8 @@ function LoginView(){
         <TextField
           label="Email"
           type="email"
+          size="small"
+          margin="dense"
           value={email.value}
           onChange={event => setEmail({value: event.target.value, error: ""})}
           error={wasIncorrect || email.error}
@@ -54,6 +62,8 @@ function LoginView(){
         <TextField
           label="Password"
           type="password"
+          size="small"
+          margin="dense"
           value={password.value}
           onChange={event => setPassword({value: event.target.value, error: ""})}
           autoComplete="current-password"

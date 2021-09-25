@@ -1,20 +1,24 @@
 from rest_framework import serializers
 
-from crags.models import Crag, Sector, Route
+from crags.models import Crag, Sector, Route, Country
+
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ('name', 'slovenian_name', 'code')
 
 
 class CragListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Crag
-        fields = ('id', 'name', 'last_updated', 'url')
-        order_by = 'name'
+        fields = ('id', 'name', 'num_of_routes', 'last_updated', 'url')
 
 
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Route
         fields = ('name', 'grade', 'length')
-        order_by = 'consecutive_num'
 
 
 class SectorSerializer(serializers.ModelSerializer):
@@ -30,5 +34,5 @@ class CragWithRoutesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Crag
-        fields = ('name', 'last_updated', 'url', 'sectors')
+        fields = ('name', 'num_of_routes', 'last_updated', 'url', 'sectors')
 

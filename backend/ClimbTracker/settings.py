@@ -153,7 +153,6 @@ CORS_ORIGIN_WHITELIST = [
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_COOKIE_SECURE = True
+CSRF_USE_SESSIONS = True # csrf token is not sent via cookie but it has be sent as data
 SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
