@@ -13,14 +13,12 @@ class CragListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Crag
         fields = ('id', 'name', 'num_of_routes', 'last_updated', 'url')
-        order_by = 'name'
 
 
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Route
         fields = ('name', 'grade', 'length')
-        order_by = 'consecutive_num'
 
 
 class SectorSerializer(serializers.ModelSerializer):

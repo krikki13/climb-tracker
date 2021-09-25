@@ -52,6 +52,8 @@ function LoginView(props){
         <TextField
           label="Email"
           type="email"
+          size="small"
+          margin="dense"
           value={email.value}
           onChange={event => setEmail({value: event.target.value, error: ""})}
           error={wasIncorrect || email.error}
@@ -60,6 +62,8 @@ function LoginView(props){
         <TextField
           label="Password"
           type="password"
+          size="small"
+          margin="dense"
           value={password.value}
           onChange={event => setPassword({value: event.target.value, error: ""})}
           autoComplete="current-password"

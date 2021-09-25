@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'react-router-dom/es/Link';
 import '../index.css';
 import queryString from 'query-string';
 import { useHistory } from 'react-router';
-import { TextField } from '@mui/material';
+import { TableBody, TableCell, TableRow, TextField } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 
 
 function CragListView(props) {
@@ -35,15 +36,23 @@ function CragListView(props) {
   
   
   return (
-  <div>
+  <React.Fragment>
   <TextField
+        size="small"
         label={"Filter"}
         value={filter}
         onChange={value => setFilter(value)}
         />
-    {cragList.map(item => <div>{item.name}</div>)}
-  </div>
+    <DataGrid
+    rows={cragList}
+    columns={tableColumns} />
+  </React.Fragment>
+  
   );
 }
+
+const tableColumns = [
+  { field: 'name', width: 250}
+];
 
 export default CragListView;

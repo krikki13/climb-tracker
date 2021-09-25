@@ -16,10 +16,7 @@ export default function CountryListView(props) {
       axios.get('api/countries')
       .then(response => {
         setCountryList(response.data);
-      }).catch(response => {
-
       });
-    
   }, []);
 
   
@@ -27,7 +24,10 @@ export default function CountryListView(props) {
   return (
     <div style={{marginLeft: "10px", height: "500px", width: "400px"}}>
       <List dense>
-        {countryList.map(item => <ListItemButton><ListItemText key={item.code} primary={item.slovenian_name} /></ListItemButton>)}
+        {countryList.map(item => 
+          <ListItemButton onClick={() => history.push("crags?c=" + item.code)}>
+            <ListItemText key={item.code} primary={item.slovenian_name} />
+          </ListItemButton>)}
       </List>
     </div>
   );

@@ -16,9 +16,12 @@ code {
   margin: 0;
   padding-left: 10px;
 }
-
+.body{
+  overflow-y: scroll;
+  height: calc(100% - 90px);
+}
 .header {
-  position: fixed;
+  /*position: fixed;*/
   left: 0;
   right: 0;
   background-color: rgb(140, 203, 255);
@@ -48,7 +51,7 @@ code {
 
 /* Fix spacing around FormLabel */
 legend.MuiFormLabel-root{
-  margin-top: 16px;
+  margin-top: 10px;
   margin-bottom: 4px;
 }
 
@@ -82,7 +85,7 @@ legend.MuiFormLabel-root{
 }
 
 .form-control-radio {
-  margin-top: 24px !important;
+  margin-top: 18px !important;
 }
 
 .button-progress {

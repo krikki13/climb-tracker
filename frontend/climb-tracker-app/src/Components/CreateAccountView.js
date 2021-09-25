@@ -125,7 +125,8 @@ function CreateAccountView(props){
 
         <FormControl className="form-control" error={!!year.error}>
           <FormLabel component="legend">Year of birth*</FormLabel>
-          <Select value={year != undefined ? year.value : ""} onChange={(event) => setYear({value: event.target.value, error: ""})}>
+          <Select value={year != undefined ? year.value : ""} size="small"
+            onChange={(event) => setYear({value: event.target.value, error: ""})}>
             {yearList.map(year => <MenuItem value={year}>{year}</MenuItem>)}
           </Select>
           {year.error ? <FormHelperText>{year.error}</FormHelperText> : <React.Fragment />}

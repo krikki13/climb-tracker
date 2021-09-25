@@ -60,9 +60,10 @@ export default function App() {
   }, []);
 
   return (
+    <div style={{position: "fixed", width: "100%", height: "100%", top: "0"}}>
     <BrowserRouter>
       <Header user={user} onLogout={getLoggedInUser} />
-      <div style={{paddingTop: "95px"}}>
+      <div className="body">
       <Switch>
         <Route exact path='/login' render={props => <LoginView {...props} user={user} onLogin={onLogin} />} />
         <Route exact path='/createAccount' render={props => <CreateAccountView {...props} user={user} />} />
@@ -74,5 +75,6 @@ export default function App() {
       </Switch>
       </div>
     </BrowserRouter>
+    </div>
   );
 }
