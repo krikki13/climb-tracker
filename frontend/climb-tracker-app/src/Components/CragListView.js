@@ -4,10 +4,12 @@ import Link from 'react-router-dom/es/Link';
 import '../index.css';
 import queryString from 'query-string';
 import { useHistory } from 'react-router';
+import { TextField } from '@mui/material';
 
 
 function CragListView(props) {
   const [cragList, setCragList] = useState([]);
+  const [filter, setFilter] = useState('');
   let history = useHistory();
   let params = queryString.parse(props.location.search);
 
@@ -34,7 +36,11 @@ function CragListView(props) {
   
   return (
   <div>
-
+  <TextField
+        label={"Filter"}
+        value={filter}
+        onChange={value => setFilter(value)}
+        />
     {cragList.map(item => <div>{item.name}</div>)}
   </div>
   );

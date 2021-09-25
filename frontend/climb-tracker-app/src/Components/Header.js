@@ -1,9 +1,12 @@
+import { Menu, MenuItem } from '@mui/material';
 import axios from 'axios';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import Link from 'react-router-dom/es/Link';
 import { appName } from '../Constants';
 
 export default function Header(props){
+  const [profileMenu, setProfileMenu] = useState(null);
   const history = useHistory();
   
   let header = [
@@ -25,7 +28,28 @@ export default function Header(props){
       {header.map(item => <Link to={item.link} class={item.class}>{item.label}</Link>)}
 
       {props.user ? 
-        <Link to="" className="header-item-right" onClick={logout}>{props.user.firstName} {props.user.lastName}</Link>
+        <React.Fragment><Link to="" className="header-item-right" 
+          onClick={(event) => setProfileMenu(event.currentTarget)}>{props.user.firstName} {props.user.lastName}</Link>
+          <Menu
+            id="basic-menu"
+            anchorEl={profileMenu}
+            open={!!profileMenu}
+            onClose={() => {setProfileMenu(null)}}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+          >
+            <MenuItem onClick={logout}>Logout</MenuItem>
+          </Menu>
+        </React.Fragment>
         :
         <Link to="login" className="header-item-right">Prijavi se</Link>
       }

@@ -4,10 +4,12 @@ import Link from 'react-router-dom/es/Link';
 import '../index.css';
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom';
+import { Box, List, ListItem, ListItemText, TextField, ListItemButton } from '@mui/material';
 
 
 export default function CountryListView(props) {
   const [countryList, setCountryList] = useState([]);
+
   let history = useHistory();
 
   useEffect(() => {
@@ -23,9 +25,10 @@ export default function CountryListView(props) {
   
   
   return (
-  <div>
-
-    {countryList.map(item => <div><Link to={"crags?c="+item.code}>{item.slovenian_name}</Link></div>)}
-  </div>
+    <div style={{marginLeft: "10px", height: "500px", width: "400px"}}>
+      <List dense>
+        {countryList.map(item => <ListItemButton><ListItemText key={item.code} primary={item.slovenian_name} /></ListItemButton>)}
+      </List>
+    </div>
   );
 }

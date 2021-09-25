@@ -1,4 +1,4 @@
-import { Button, FormControl, FormHelperText, Grid, Input, InputLabel, TextField } from '@material-ui/core';
+import { Button, FormControl, FormHelperText, Grid, Input, InputLabel, TextField } from '@mui/material';
 import Link from 'react-router-dom/es/Link';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';

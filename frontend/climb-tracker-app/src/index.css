@@ -84,3 +84,12 @@ legend.MuiFormLabel-root{
 .form-control-radio {
   margin-top: 24px !important;
 }
+
+.button-progress {
+  color: #c6cccb;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12;
+  margin-left: -12;
+}
