@@ -7,7 +7,7 @@ import { emailPattern } from '../Constants.js';
 import '../index.css';
 import { useState } from 'react';
 
-function LoginView(){
+function LoginView(props){
   const history = useHistory();
   const [email, setEmail] = useState({value: "", error: ""});
   const [password, setPassword] = useState({value: "", error: ""});
@@ -33,8 +33,14 @@ function LoginView(){
       email: email.value,
       password: password.value
     }).then(response => {
-      history.push("/");
-    }).catch(response => setWasIncorrect(true));
+      if(response.data && response.data.csrftoken) {
+        props.onLogin(response.data.csrftoken);
+        history.push("");
+      }
+    }).catch(response => {
+      var cva=2;
+      setWasIncorrect(true);
+    });
   }
 
   return(

@@ -13,20 +13,15 @@ export default function Header(props){
   ];
 
   const logout = () => {
-      axios.post("users/logout")
-      .then(response => { 
-        props.onLogout();
-      });
-
-      //axios.get("users/whoami")
-    //.then(response => {  
-      
-    };
+    axios.post("users/logout")
+    .then(response => { 
+      props.onLogout();
+    });
+  };
   
-
   return(
     <div className="header">
-      <h2 className="app-name clickable" onClick={()=>history.push("/")}>{appName}</h2>
+      <h2 className="app-name clickable" onClick={()=>history.push("")}>{appName}</h2>
       {header.map(item => <Link to={item.link} class={item.class}>{item.label}</Link>)}
 
       {props.user ? 

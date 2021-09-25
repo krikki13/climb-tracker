@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Link from 'react-router-dom/es/Link';
 import '../index.css';
 import queryString from 'query-string';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 
 export default function CountryListView(props) {
