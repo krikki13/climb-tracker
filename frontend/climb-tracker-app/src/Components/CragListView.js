@@ -24,7 +24,10 @@ function CragListView(props) {
 
       axios.get('api/crags/' + params['c'])
       .then(response => {
-        setCragList(response.data);
+        setCragList(response.data.map(item => {
+          item.simplifiedName = item.name.replaceAll(/[ /\-,()]+/g, " ").replaceAll("'", "");
+          return item;
+        }));
       }).catch(response => {
         if(response.response.status == 404) {
           history.push("crags");
@@ -33,20 +36,20 @@ function CragListView(props) {
     } 
   }, [params['c']]);
 
-  var filter1 = filter.trim().replace("c", "[cč]").replace("s", "[sš]").replace("z", "[zž]");
+  var filter1 = filter.trim().replace("c", "[cčć]").replace("s", "[sš]").replace("z", "[zž]").replace("d", "[dđ]").replaceAll(/[ /\-,()]+/g, " ").replaceAll("'", "");
   var re = new RegExp("(?:^|\\W)" + filter1, "i");
   return (
   <React.Fragment>
   <TextField
+        autoFocus={true}
         size="small"
         type="search"
         label={"Filter"}
         value={filter}
         onChange={event => setFilter(event.target.value)}
         />
-        {filter1}
     <DataGrid
-      rows={cragList.filter(item => !filter1 || item.name && re.test(item.name))}
+      rows={cragList.filter(item => !filter1 || item.simplifiedName && re.test(item.simplifiedName))}
       columns={tableColumns}
       pagination={false} />
   </React.Fragment>
