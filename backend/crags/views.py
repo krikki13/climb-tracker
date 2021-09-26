@@ -31,3 +31,17 @@ def get_sectors_of_crag(request, crag_id):
     if request.method == 'GET':
         serializer = CragWithRoutesSerializer(Crag.objects.get(pk=crag_id))
         return Response(serializer.data)
+
+
+@api_view(['GET'])
+def update_number_of_routes(request):
+    if request.method == 'GET':
+        crags = Crag.objects.all()
+        for crag in crags:
+            count = 0
+            crag_ser = CragWithRoutesSerializer(crag)
+            for sector in crag_ser.data['sectors']:
+                count += len(sector['routes'])
+            crag.num_of_routes = count
+            crag.save()
+        return Response("Updated counts for {} crags".format(len(crags)), status=status.HTTP_200_OK)
