@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Link from 'react-router-dom/es/Link';
 import '../index.css';
-import queryString from 'query-string';
 import { useHistory } from 'react-router-dom';
-import { Box, List, ListItem, ListItemText, TextField, ListItemButton } from '@mui/material';
+import { List, ListItemText, ListItemButton } from '@mui/material';
 
 
 export default function CountryListView(props) {
@@ -19,7 +17,6 @@ export default function CountryListView(props) {
       });
   }, []);
 
-  
   
   return (
     <div style={{marginLeft: "10px", height: "500px", width: "400px"}}>

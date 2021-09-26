@@ -33,26 +33,29 @@ function CragListView(props) {
     } 
   }, [params['c']]);
 
-  
-  
+  var filter1 = filter.trim().replace("c", "[cč]").replace("s", "[sš]").replace("z", "[zž]");
+  var re = new RegExp("(?:^|\\W)" + filter1, "i");
   return (
   <React.Fragment>
   <TextField
         size="small"
+        type="search"
         label={"Filter"}
         value={filter}
-        onChange={value => setFilter(value)}
+        onChange={event => setFilter(event.target.value)}
         />
+        {filter1}
     <DataGrid
-    rows={cragList}
-    columns={tableColumns} />
+      rows={cragList.filter(item => !filter1 || item.name && re.test(item.name))}
+      columns={tableColumns}
+      pagination={false} />
   </React.Fragment>
-  
   );
 }
 
 const tableColumns = [
-  { field: 'name', width: 250}
+  { field: 'name', headerName: 'Name', flex: 1},
+  { field: 'num_of_routes', headerName: 'Number of routes', flex: 1 }
 ];
 
 export default CragListView;
