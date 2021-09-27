@@ -10,9 +10,12 @@ class CountrySerializer(serializers.ModelSerializer):
 
 
 class CragListSerializer(serializers.ModelSerializer):
+    numOfRoutes = serializers.CharField(source='num_of_routes')
+    lastUpdated = serializers.CharField(source='last_updated')
+
     class Meta:
         model = Crag
-        fields = ('id', 'name', 'num_of_routes', 'last_updated', 'url')
+        fields = ('id', 'name', 'numOfRoutes', 'lastUpdated', 'url')
 
 
 class RouteSerializer(serializers.ModelSerializer):
@@ -30,9 +33,11 @@ class SectorSerializer(serializers.ModelSerializer):
 
 
 class CragWithRoutesSerializer(serializers.ModelSerializer):
+    numOfRoutes = serializers.CharField(source='num_of_routes')
+    lastUpdated = serializers.CharField(source='last_updated')
     sectors = SectorSerializer(many=True)
 
     class Meta:
         model = Crag
-        fields = ('name', 'num_of_routes', 'last_updated', 'url', 'sectors')
+        fields = ('name', 'numOfRoutes', 'lastUpdated', 'url', 'sectors')
 

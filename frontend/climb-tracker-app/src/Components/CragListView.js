@@ -38,13 +38,19 @@ function CragListView(props) {
 
   var filter1 = filter.trim().replace("c", "[cčć]").replace("s", "[sš]").replace("z", "[zž]").replace("d", "[dđ]").replaceAll(/[ /\-,()]+/g, " ").replaceAll("'", "");
   var re = new RegExp("(?:^|\\W)" + filter1, "i");
+
+  const tableColumns = [
+    { field: 'name', headerName: 'Ime', flex: 1, renderCell: (params) => <div onClick={() => history.push(`crag/${params.row.id}`)}>{params.value}</div>},
+    { field: 'num_of_routes', headerName: 'Število smeri', flex: 1 }
+  ];
+
   return (
   <React.Fragment>
   <TextField
         autoFocus={true}
         size="small"
         type="search"
-        label={"Filter"}
+        label={"Išči"}
         value={filter}
         onChange={event => setFilter(event.target.value)}
         />
@@ -56,9 +62,6 @@ function CragListView(props) {
   );
 }
 
-const tableColumns = [
-  { field: 'name', headerName: 'Name', flex: 1},
-  { field: 'num_of_routes', headerName: 'Number of routes', flex: 1 }
-];
+
 
 export default CragListView;

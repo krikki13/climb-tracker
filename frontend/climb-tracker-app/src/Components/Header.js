@@ -9,7 +9,7 @@ export default function Header(props){
   const [profileMenu, setProfileMenu] = useState(null);
   const history = useHistory();
   
-  let header = [
+  let header = [ // all links must have leading slash
     {label: "Slovenska plezališča", link: "/crags?c=SI", class: "header-item-left"},
     {label: "Tuja plezališča", link: "/countries", class: "header-item-left"},
     {label: "Plezalni dnevnik", link: "", class: "header-item-left"}
@@ -51,7 +51,7 @@ export default function Header(props){
           </Menu>
         </React.Fragment>
         :
-        <Link to="login" className="header-item-right">Prijavi se</Link>
+        <Link to="/login" className="header-item-right">Prijavi se</Link>
       }
       <div style={{clear: "both"}}></div>
     </div>

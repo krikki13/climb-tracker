@@ -8,10 +8,10 @@ import { emailPattern } from '../Constants.js';
 
 const passwordComplexityCheck = (password) => {
   if(password.length < 8) {
-    return "Password should contain 8 characters including upper and lower case letter, number and a sign.";
+    return "Geslo mora biti dolgo 8 znakov in vsebovati male in velike črke, številke in znake.";
   }
   if(password.indexOf(" ") >= 0) {
-    return "Password should not contain any spaces."
+    return "Geslo ne sme vsebovati presledkov."
   }
   return "";
 }
@@ -55,7 +55,7 @@ function CreateAccountView(props){
       if(formData[entry].state.error){
         validationPassed = false;
       } else if(formData[entry].state.value == "") {
-        formData[entry].set({ value: formData[entry].state.value, error: "Field is required"});
+        formData[entry].set({ value: formData[entry].state.value, error: "Polje je zahtevano"});
         validationPassed = false;
       }
     }
@@ -93,38 +93,38 @@ function CreateAccountView(props){
   return(
     <form className="form" noValidate onSubmit={onSubmit}>
       
-      <h2 style={{marginBottom: "16px"}}>Create account</h2>
+      <h2 style={{marginBottom: "16px"}}>Ustvari račun</h2>
       <MyTextField
-          label="First Name"
+          label="Ime"
           state={firstName}
           setValue={setFirstName}
-          setError={(value) => /[0-9!"#$%&/()='+*?,.-;_:<>[\]]/.test(value) ? "Enter a valid name" : ""} />
+          setError={(value) => /[0-9!"#$%&/()='+*?,.;_:<>[\]]/.test(value) ? "Vnesi pravo ime" : ""} />
       <MyTextField
-          label="Last Name"
+          label="Priimek"
           state={lastName}
           setValue={setLastName} 
-          setError={(value) => /[0-9!"#$%&/()='+*?,.-;_:<>[\]]/.test(value) ? "Enter a valid name" : ""} />
+          setError={(value) => /[0-9!"#$%&/()='+*?,.;_:<>[\]]/.test(value) ? "Vnesi pravi priimek" : ""} />
       <MyTextField
-          label="Email"
+          label="E-pošta"
           state={email}
           setValue={setEmail}
-          setError={(value) => emailPattern.test(value) ? "" : "Email is invalid"} />
+          setError={(value) => emailPattern.test(value) ? "" : "E-pošta ni pravilna"} />
       <MyTextField
-          label="Password"
+          label="Geslo"
           state={password}
           setValue={setPassword}
           setError={passwordComplexityCheck}
           type="password" />
       <MyTextField
-          label="Repeat password"
+          label="Ponovi geslo"
           state={repeatPassword}
           setValue={setRepeatPassword}
-          setError={(value) => password.value == value ? "" : "Passwords do not match"}
+          setError={(value) => password.value == value ? "" : "Gesli se ne ujemata"}
           type="password" />
 
 
         <FormControl className="form-control" error={!!year.error}>
-          <FormLabel component="legend">Year of birth*</FormLabel>
+          <FormLabel component="legend">Leto rojstva*</FormLabel>
           <Select value={year != undefined ? year.value : ""} size="small"
             onChange={(event) => setYear({value: event.target.value, error: ""})}>
             {yearList.map(year => <MenuItem value={year}>{year}</MenuItem>)}
@@ -132,17 +132,17 @@ function CreateAccountView(props){
           {year.error ? <FormHelperText>{year.error}</FormHelperText> : <React.Fragment />}
         </FormControl>
         <FormControl className="form-control form-control-radio" component="fieldset" error={!!gender.error}>
-          <FormLabel component="legend">Gender*</FormLabel>
+          <FormLabel component="legend">Spol*</FormLabel>
           <RadioGroup className="radio-group" aria-label="gender" name="gender" value={gender.value} onChange={(event) => setGender({value: event.target.value, error: ""})}>
-            <FormControlLabel value="F" control={<Radio size="small" />} label="Female" />
-            <FormControlLabel value="M" control={<Radio size="small" />} label="Male" />
-            <FormControlLabel value="None" control={<Radio size="small" />} label="I don't want to say" />
+            <FormControlLabel value="F" control={<Radio size="small" />} label="Ženski" />
+            <FormControlLabel value="M" control={<Radio size="small" />} label="Moški" />
+            <FormControlLabel value="None" control={<Radio size="small" />} label="Ne želim odgovoriti" />
           </RadioGroup>
           {gender.error ? <FormHelperText>{gender.error}</FormHelperText> : <React.Fragment />}
         </FormControl>
         <Button className="fit-content" style={{marginTop: "17px"}} size="small" variant="contained" color="primary" 
           type="submit">
-            Create{sending ? <CircularProgress size={24} className="button-progress" /> : "" }</Button>
+            Ustvari{sending ? <CircularProgress size={24} className="button-progress" /> : "" }</Button>
       
       
     </form>

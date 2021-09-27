@@ -16,6 +16,7 @@ import CragListView from './Components/CragListView';
 import Header from './Components/Header';
 import { appName } from './Constants';
 import CountryListView from './Components/CountryListView';
+import CragRouteListView from './Components/CragRouteListView';
 
 export default function App() {
   const [user, setUser] = useState(undefined);
@@ -70,6 +71,7 @@ export default function App() {
         <Route exact path='/accountCreated' render={props => <AccountCreated {...props} user={user} />} />
         <Route exact path='/countries' render={props => <CountryListView {...props} user={user} />} />
         <Route exact path='/crags' render={props => <CragListView {...props} user={user} />} />
+        <Route exact path='/crag/:id' render={props => <CragRouteListView {...props} user={user} />} />
         <Route exact path='/' render={props => <HomeView {...props} user ={user} />} />
         <Redirect from='/*' to='/' />
       </Switch>
