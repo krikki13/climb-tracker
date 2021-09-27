@@ -41,7 +41,7 @@ function CragListView(props) {
 
   const tableColumns = [
     { field: 'name', headerName: 'Ime', flex: 1, renderCell: (params) => <div onClick={() => history.push(`crag/${params.row.id}`)}>{params.value}</div>},
-    { field: 'num_of_routes', headerName: 'Število smeri', flex: 1 }
+    { field: 'numOfRoutes', headerName: 'Število smeri', flex: 1 }
   ];
 
   return (

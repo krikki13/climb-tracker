@@ -38,7 +38,6 @@ function LoginView(props){
         history.push("");
       }
     }).catch(response => {
-      var cva=2;
       setWasIncorrect(true);
     });
   }
