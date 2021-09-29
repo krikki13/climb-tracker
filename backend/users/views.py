@@ -15,11 +15,11 @@ from users.serializers import UserSerializer
 def create_new_user(request):
     data = parsers.JSONParser().parse(request)
 
-    tutorial_serializer = UserSerializer(data=data)
-    if tutorial_serializer.is_valid():
-        User.objects.create_user(tutorial_serializer.validated_data)
-        return JsonResponse(tutorial_serializer.data, status=status.HTTP_201_CREATED)
-    return JsonResponse(tutorial_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    user_serializer = UserSerializer(data=data)
+    if user_serializer.is_valid():
+        User.objects.create_user(user_serializer.validated_data)
+        return JsonResponse(user_serializer.data, status=status.HTTP_201_CREATED)
+    return JsonResponse(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])

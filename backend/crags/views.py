@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from crags.models import Crag, Country
-from crags.serializers import CragListSerializer, CragWithRoutesSerializer, CountrySerializer
+from crags.serializers import CragSerializer, CragWithRoutesSerializer, CountrySerializer
 
 
 @api_view(['GET'])
@@ -20,7 +20,7 @@ def get_all_crags(request, country_code):
     if request.method == 'GET':
         try:
             country = Country.objects.get(code=country_code)
-            serializer = CragListSerializer(Crag.objects.filter(id_country=country.id), many=True)
+            serializer = CragSerializer(Crag.objects.filter(id_country=country.id), many=True)
             return Response(serializer.data)
         except ObjectDoesNotExist:
             return Response("Country code does not exist", status=status.HTTP_404_NOT_FOUND)

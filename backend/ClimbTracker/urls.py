@@ -22,6 +22,7 @@ urlpatterns = [
     #path('copy-info/', include('copycraginfo.urls')),
     path('api/', include('crags.urls')),
     path('users/', include('users.urls')),
+    path('journal/', include('journal.urls')),
     path('login', views.login_user),
     path('admin/', admin.site.urls),
 ]

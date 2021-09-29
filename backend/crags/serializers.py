@@ -9,7 +9,7 @@ class CountrySerializer(serializers.ModelSerializer):
         fields = ('name', 'slovenian_name', 'code')
 
 
-class CragListSerializer(serializers.ModelSerializer):
+class CragSerializer(serializers.ModelSerializer):
     numOfRoutes = serializers.CharField(source='num_of_routes')
     lastUpdated = serializers.CharField(source='last_updated')
 

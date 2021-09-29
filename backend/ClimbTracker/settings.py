@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crags.apps.CragsConfig',
+    'journal.apps.JournalConfig',
     #'copycraginfo.apps.CopycraginfoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -83,7 +84,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'OPTIONS': {
-            'options': '-c search_path=users,crags,public'
+            'options': '-c search_path=users,crags,journal,public'
         },
         'NAME': 'postgres',
         'USER': 'postgres',
