@@ -21,7 +21,7 @@ class CragSerializer(serializers.ModelSerializer):
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Route
-        fields = ('name', 'grade', 'length')
+        fields = ('id', 'name', 'grade', 'length')
 
 
 class SectorSerializer(serializers.ModelSerializer):
@@ -29,7 +29,7 @@ class SectorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sector
-        fields = ('name', 'routes')
+        fields = ('id', 'name', 'routes')
 
 
 class CragWithRoutesSerializer(serializers.ModelSerializer):
@@ -39,5 +39,5 @@ class CragWithRoutesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Crag
-        fields = ('name', 'numOfRoutes', 'lastUpdated', 'url', 'sectors')
+        fields = ('id', 'name', 'numOfRoutes', 'lastUpdated', 'url', 'sectors')
 

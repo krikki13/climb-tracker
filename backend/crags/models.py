@@ -34,7 +34,7 @@ class Sector(models.Model):
 
 class Route(models.Model):
     id = models.AutoField(primary_key=True)
-    sector = models.ForeignKey('Sector', models.DO_NOTHING, db_column='id_of_sector', related_name='routes')
+    sector = models.ForeignKey(Sector, models.DO_NOTHING, db_column='id_of_sector', related_name='routes')
     name = models.CharField(max_length=100)
     grade = models.CharField(max_length=70, blank=True, null=True)
     length = models.IntegerField(blank=True, null=True)

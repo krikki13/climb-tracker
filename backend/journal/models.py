@@ -26,9 +26,9 @@ class ClimbingDay(models.Model):
 
 
 class ClimbedRoute(models.Model):
-    day_id = models.ForeignKey(ClimbingDay, models.DO_NOTHING)
+    day = models.ForeignKey(ClimbingDay, models.DO_NOTHING, db_column='day_id', related_name='routes')
     id = models.AutoField(primary_key=True)
-    route_id = models.ForeignKey(Route, models.DO_NOTHING)
+    route = models.ForeignKey(Route, models.DO_NOTHING, db_column='route_id')
     ascent_type = models.ForeignKey(AscentType, models.DO_NOTHING)
     comment = models.CharField(max_length=255, blank=True, null=True)
     belayer = models.CharField(max_length=100, blank=True, null=True)

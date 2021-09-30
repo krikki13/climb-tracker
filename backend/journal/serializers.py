@@ -9,15 +9,24 @@ class ClimbingDaySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ClimbingDay
-        fields = ('date', 'crag', 'belayer', 'comment')
+        fields = ('id', 'date', 'crag', 'belayer', 'comment')
 
 
 class ClimbedRouteSerializer(serializers.ModelSerializer):
     routeId = serializers.IntegerField(source='route_id')
-    ascentType = serializers.CharField(source='ascent_type')
+    ascentType = serializers.CharField(source='ascent_type.name')
     suggestedGrade = serializers.CharField(source='suggested_grade')
     topRope = serializers.BooleanField(source='is_top_rope')
 
     class Meta:
         model = ClimbedRoute
-        fields = ('routeId', 'ascentType', 'topRope', 'belayer', 'comment', 'suggestedGrade')
+        fields = ('id', 'routeId', 'ascentType', 'topRope', 'belayer', 'comment', 'suggestedGrade')
+
+
+class ClimbingDayWithRoutesSerializer(serializers.ModelSerializer):
+    crag = CragSerializer
+    routes = ClimbedRouteSerializer(many=True)
+
+    class Meta:
+        model = ClimbingDay
+        fields = ('id', 'date', 'crag', 'belayer', 'comment', 'routes')
