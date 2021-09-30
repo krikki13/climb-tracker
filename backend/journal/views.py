@@ -45,8 +45,6 @@ def get_climbing_days(request):
 @api_view(['GET'])
 @login_required_401
 def get_climbing_day_details(request, day_id):
-    #return Response(ClimbingDayWithRoutesSerializer(ClimbedRoute.objects.get(id=2)).data)
-
     try:
         climbing_day = ClimbingDay.objects.get(id=day_id)
         if climbing_day.user_id != request.user.id:

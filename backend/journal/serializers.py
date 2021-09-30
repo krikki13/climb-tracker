@@ -1,3 +1,4 @@
+from django.db.models import QuerySet, Count
 from rest_framework import serializers
 
 from crags.serializers import CragSerializer
@@ -6,10 +7,24 @@ from journal.models import ClimbingDay, ClimbedRoute
 
 class ClimbingDaySerializer(serializers.ModelSerializer):
     crag = CragSerializer
+    numOfClimbedRoutes = serializers.IntegerField()
 
     class Meta:
         model = ClimbingDay
-        fields = ('id', 'date', 'crag', 'belayer', 'comment')
+        fields = ('id', 'date', 'crag', 'belayer', 'comment', 'numOfClimbedRoutes')
+
+    def __new__(cls, *args, **kwargs):
+        if args and isinstance(args[0], QuerySet):
+            queryset = cls._build_queryset(args[0])
+            args = (queryset,) + args[1:]
+        return super().__new__(cls, *args, **kwargs)
+
+    @classmethod
+    def _build_queryset(cls, queryset):
+        # modify the queryset here
+        return queryset.annotate(
+            numOfClimbedRoutes=Count('routes')
+        )
 
 
 class ClimbedRouteSerializer(serializers.ModelSerializer):
